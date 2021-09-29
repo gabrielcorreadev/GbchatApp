@@ -1,7 +1,7 @@
 # GbChat
 > GbChat from https://gb-chat.tk
 
-![](header.png)
+![](header.jpg)
 
 ## Installation
 
