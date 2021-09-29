@@ -1,5 +1,5 @@
-# SmartOdontoApp
-> SmartOdontoApp from https://gb-chat.tk
+# GbChat
+> GbChat from https://gb-chat.tk
 
 ![](header.png)
 
