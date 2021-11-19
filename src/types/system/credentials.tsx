@@ -3,7 +3,7 @@ export class Credentials {
         public email: string,
         public password: string,
         public device_name: string,
-        public lat: number,
-        public lng: number
+        public latitude: string,
+        public longitude: string
     ) { }
 }

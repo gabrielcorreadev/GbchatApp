@@ -1,6 +1,6 @@
 const environment = {
     production: true,
-    URL: 'https://gb-chat.tk/api',
+    URL: 'http://192.168.0.2:8000/api', //https://gb-chat.tk/api
     URL_NOTIFICATION: 'https://onesignal.com/api/v1/notifications',
     ONESIGNALAPPID: 'd1752734-3f24-45ef-add4-7ec1b069e2ef',
     storageKeys: {

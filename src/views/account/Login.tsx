@@ -49,7 +49,7 @@ export default function Login({ navigation }:any) {
 
   const onSubmit = (data:FormData) => {
     const device_name = Platform.OS === 'ios' ? `${Platform.OS} - ${Platform.Version}`: `${Platform.OS} - ${(Platform.constants as any).Model}`;
-    const credenciais = new Credentials(data.login, data.password, device_name, coords.latitude, coords.longitude);
+    const credenciais = new Credentials(data.login, data.password, device_name, coords.latitude.toString(), coords.longitude.toString());
     console.log(credenciais)
     setLoading(true);
     autenticacaoService.login(credenciais).then((response) => {
