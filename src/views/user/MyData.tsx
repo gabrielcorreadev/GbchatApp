@@ -16,7 +16,7 @@ export const MyData = ({ route, navigation }: Props) => {
   const { authData } = useAuth();
   
   return (
-    <View bg={useColorModeValue('white', 'black')} flex={1}>
+    <View flex={1}>
     <FocusAwareStatusBar  />
   <Stack
   marginTop={5}
@@ -33,7 +33,7 @@ export const MyData = ({ route, navigation }: Props) => {
   <Avatar
     size="2xl"
     source={{
-      uri: "https://pbs.twimg.com/profile_images/1320985200663293952/lE_Kg6vr_400x400.jpg",
+      uri: authData?.user.photo,
     }}
   >
     RB
@@ -41,7 +41,7 @@ export const MyData = ({ route, navigation }: Props) => {
   <VStack space={3} w="90%" marginTop={5}>
     <ItemMenu label='Nome' title={authData?.user.name} />
     <ItemMenu label='Email' title={authData?.user.email} />
-    <ItemMenu label='Localização' title={'Araraquara - SP'} />
+    <ItemMenu label='Localização' title={'Araraquara'} />
     <ItemMenu label='Telefone' title={'16988447655'} />
   </VStack>
 </Stack>

@@ -6,7 +6,7 @@ import Conversation from "./conversation/Conversation";
 
 export default function Chat() {
   return (
-    <View flex={1} bg={useColorModeValue('white', 'black')}>
+    <View flex={1}>
       <FocusAwareStatusBar  />
 <Stack padding={3}>
       <ScrollView showsHorizontalScrollIndicator={false} horizontal>
@@ -18,17 +18,17 @@ export default function Chat() {
           <FeaturedStory
             backgroundImage="https://www.perfectczechwomen.com/wp-content/uploads/2019/04/New-Profile-30-500x572.jpg"
             title="Ana Clara"
-            bg="orange.600"
+            bg="blue.600"
           />
                     <FeaturedStory
             backgroundImage="https://www.perfectczechwomen.com/wp-content/uploads/2019/04/New-Profile-15-500x580.jpg"
             title="Fernanda Lima"
-            bg="green.600"
+            bg="blue.600"
           />
           <FeaturedStory
             backgroundImage="https://www.perfectczechwomen.com/wp-content/uploads/2019/05/pavla.jpeg"
             title="Maria Julia"
-            bg="green.600"
+            bg="blue.600"
           />
         </HStack>
       </ScrollView>

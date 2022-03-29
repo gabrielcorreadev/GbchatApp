@@ -29,7 +29,7 @@ const colorModeManager: StorageManager = {
 };
 
 Moment.globalLocal = true;
-Moment.globalLocale = 'pt-BR';
+Moment.globalLocale = 'pt-br';
 
 const App = () => {
   

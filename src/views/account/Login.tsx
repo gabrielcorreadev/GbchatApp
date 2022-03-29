@@ -17,7 +17,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { autenticacaoService } from '../../services/account/autenticacao.service';
 import { useEffect, useState } from 'react';
 import { Credentials } from '../../types/system/credentials';
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { SessionData } from '../../types/system/session-data';
 import { useAuth } from '../../contexts/Auth';
 import { FocusAwareStatusBar } from '../../components/FocusAwareStatusBar';
@@ -35,7 +35,7 @@ export default function Login({ navigation }:any) {
 
   const [isCancelled, setIsCancelled] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
-  
+  const { colorMode, toggleColorMode } = useColorMode();
   const { control, handleSubmit, formState: { errors } } = useForm<FormData>();
 
   const auth = useAuth();
@@ -52,8 +52,8 @@ export default function Login({ navigation }:any) {
     const credenciais = new Credentials(data.login, data.password, device_name, coords.latitude.toString(), coords.longitude.toString());
     console.log(credenciais)
     setLoading(true);
-    autenticacaoService.login(credenciais).then((response) => {
-      handleLogin(response.data);
+    autenticacaoService.login(credenciais).then((response: AxiosResponse) => {
+      handleLogin(response.data.data);
     }).catch((error: AxiosError) => {
       toast.show({
         title: error.response?.data.message,
@@ -74,12 +74,12 @@ export default function Login({ navigation }:any) {
   }
 
   return (
-    <Center flex={1} bg={useColorModeValue('white', 'black')}>
+    <Center flex={1}>
       <FocusAwareStatusBar barStyle={useColorModeValue('dark-content', 'light-content')} backgroundColor={useColorModeValue('white', 'black')} />
       <FormControl>
         <Stack mx={5} alignItems="center">
         <Image
-        source={require('../../assets/app/logo.png')}
+        source={colorMode == 'dark' ? require('../../assets/app/logo.png') : require('../../assets/app/logo-dark.png') }
         borderRadius={10}
       size={'sm'}
 

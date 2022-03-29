@@ -12,12 +12,12 @@ import { FocusAwareStatusBar } from '../../../components/FocusAwareStatusBar';
 export default function DarkMode () {
     const { colorMode, toggleColorMode } = useColorMode();
     return (
-      <HStack flex={1} padding={5} bg={useColorModeValue('white', 'black')}>
+      <HStack flex={1} padding={5}>
           <FocusAwareStatusBar  />
               <Radio.Group
       name="myRadioGroup"
       accessibilityLabel="favorite number"
-      value={colorMode === 'light' ? 'light' : 'dark'}
+      value={useColorModeValue('light', 'dark')}
       onChange={(nextValue) => {
         toggleColorMode();
       }}

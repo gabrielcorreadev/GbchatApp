@@ -132,7 +132,7 @@ export default function ConnectedDevices({ route, navigation }: Props) {
 
 
   return (
-    <Stack flex={1} padding={5} bg={useColorModeValue('white', 'black')}>
+    <Stack flex={1} padding={5}>
       {!isLoading ? <Heading size="sm" justifyContent={'center'} marginBottom={5}>Sua conta foi conectada nestes dispostivos</Heading> : null}
       <ListDevices />
       <Actionsheet isOpen={isOpen} onClose={onClose} size="full">

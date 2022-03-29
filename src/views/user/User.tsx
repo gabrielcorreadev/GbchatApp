@@ -25,7 +25,7 @@ export default function User({ route, navigation }: Props) {
   };
 
   return (
-    <View flex={1} bg={useColorModeValue('white', 'black')}>
+    <View flex={1}>
       <FocusAwareStatusBar  />
       <Stack
         padding={8}
@@ -43,7 +43,7 @@ export default function User({ route, navigation }: Props) {
         <Avatar
           bg="lightBlue.400"
           source={{
-            uri: "https://pbs.twimg.com/profile_images/1320985200663293952/lE_Kg6vr_400x400.jpg",
+            uri: authData?.user.photo,
           }}
         >
           RB

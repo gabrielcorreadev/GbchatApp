@@ -10,8 +10,8 @@ export function SplashScreen() {
             >
                 <Image
                     source={require('../assets/app/logo.png')}
-                    width={150}
-                    height={150}
+                    width={158}
+                    height={158}
                     size={'md'}
 
                     alt="Alternate Text"

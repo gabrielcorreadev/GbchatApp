@@ -10,7 +10,9 @@ const Tab = createBottomTabNavigator();
 
 export default function HomeTabs() {
   return (
-<Tab.Navigator screenOptions={{headerShown:false, 
+<Tab.Navigator 
+
+screenOptions={{headerShown:false, 
         tabBarActiveTintColor: theme.colors.primary[500], 
         tabBarStyle:{height:60, backgroundColor:useColorModeValue('white', 'black')}, 
         tabBarIconStyle:{

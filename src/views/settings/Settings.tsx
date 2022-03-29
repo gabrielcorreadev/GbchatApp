@@ -4,7 +4,6 @@ import { SettingsScreenNavigationProp, SettingsListScreenRouteProp } from "../..
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Alert } from "react-native";
 import { useAuth } from "../../contexts/Auth";
-import { textColor } from "styled-system";
 import { FocusAwareStatusBar } from "../../components/FocusAwareStatusBar";
 
 type Props = {
@@ -23,7 +22,7 @@ export const Settings = ({ route, navigation }: Props) => {
     };
     
     return (
-        <View bg={useColorModeValue('white', 'black')} flex={1}>
+        <View flex={1}>
           <FocusAwareStatusBar  />
         <Stack
         marginTop={5}
@@ -40,7 +39,7 @@ export const Settings = ({ route, navigation }: Props) => {
         <Avatar
           size="2xl"
           source={{
-            uri: "https://pbs.twimg.com/profile_images/1320985200663293952/lE_Kg6vr_400x400.jpg",
+            uri: authData?.user.photo,
           }}
         >
           RB
