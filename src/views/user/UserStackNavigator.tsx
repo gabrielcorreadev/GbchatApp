@@ -9,6 +9,7 @@ import User from "./User";
 import { MyData } from "./MyData";
 import { Settings } from "../settings/Settings";
 import { SettingsStackNavigator } from "../settings/SettingsStackNavigator";
+import { Profile } from "./Profile";
 
 const Stack = createStackNavigator<UserStackParamList>();
 
@@ -30,6 +31,7 @@ function getHeaderTitle(route:any) {
   return (
       <Stack.Navigator screenOptions={screenOptionHeader()}>
         <Stack.Screen name="User" component={User} options={{ title: 'Meu Perfil' }} />
+        <Stack.Screen name="Profile" component={Profile}  options={{ title: 'Perfil' }} />
         <Stack.Screen name="MyData" component={MyData} options={{ title: 'Meus dados' }} />
         <Stack.Screen name="Settings" component={SettingsStackNavigator} options={{ headerShown:false}} />
       </Stack.Navigator>

@@ -5,7 +5,7 @@ import { SessionData } from '../types/system/session-data';
 import { autenticacaoService } from '../services/account/autenticacao.service';
 
 type AuthContextData = {
-  authData?: SessionData;
+  authData?: SessionData | null;
   loading: boolean;
   signIn(authData: SessionData): Promise<void>;
   signOut(): void;

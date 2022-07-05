@@ -1,4 +1,4 @@
-import { AlertDialog, Avatar, Button, Circle, Divider, Heading, HStack, Icon, Link, Stack, Text, useColorModeValue, View, VStack } from 'native-base';
+import { AlertDialog, Avatar, Button, Circle, Divider, Heading, HStack, Icon, Link, Pressable, Stack, Text, useColorModeValue, View, VStack } from 'native-base';
 import * as React from 'react';
 import { useAuth } from '../../contexts/Auth';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
@@ -39,6 +39,7 @@ export default function User({ route, navigation }: Props) {
           md: "flex-start",
         }}
       >
+        <Pressable onPress={() => navigation.navigate('Profile', {userId: authData?.user.id as any})}>
         <HStack alignItems="center" marginBottom={3}>
         <Avatar
           bg="lightBlue.400"
@@ -51,6 +52,7 @@ export default function User({ route, navigation }: Props) {
         </Avatar>
         <Heading size="sm" marginLeft={2}>{authData?.user.name}</Heading>
         </HStack>
+        </Pressable>
         <VStack space={3} w="90%">
           <ItemMenu title="Meus dados" icon="card-account-details-outline" onPress={() => navigation.navigate('MyData')} />
           <ItemMenu title="Ajuda" icon="help-circle-outline" />

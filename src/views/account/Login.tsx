@@ -21,6 +21,8 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { SessionData } from '../../types/system/session-data';
 import { useAuth } from '../../contexts/Auth';
 import { FocusAwareStatusBar } from '../../components/FocusAwareStatusBar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import OneSignal from 'react-native-onesignal';
 import { useForm, Controller } from 'react-hook-form';
 import { Platform } from 'react-native';
 import useLocation from '../../hooks/useLocation';
@@ -35,6 +37,7 @@ export default function Login({ navigation }:any) {
 
   const [isCancelled, setIsCancelled] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
+  const [userId, setUserId] = React.useState<any>(null);
   const { colorMode, toggleColorMode } = useColorMode();
   const { control, handleSubmit, formState: { errors } } = useForm<FormData>();
 
@@ -43,13 +46,28 @@ export default function Login({ navigation }:any) {
   const { coords, errorMsg } = useLocation();	    //utilizando o hook que vai nos fornecer a posição do usuário.
 
   useEffect(() => {
+    getDeviceUserId();
     return () => (setIsCancelled(true))
   }, [])
-  
+
+  const getDeviceUserId = async () =>
+  {
+    try {
+      const data = await OneSignal.getDeviceState();
+      if(data !== null) {
+        setUserId(data.userId);
+      }
+    } catch(e) {
+      // error reading value
+    }
+  } 
 
   const onSubmit = (data:FormData) => {
+
+    const player_id = userId || '';
+
     const device_name = Platform.OS === 'ios' ? `${Platform.OS} - ${Platform.Version}`: `${Platform.OS} - ${(Platform.constants as any).Model}`;
-    const credenciais = new Credentials(data.login, data.password, device_name, coords.latitude.toString(), coords.longitude.toString());
+    const credenciais = new Credentials(data.login, data.password, player_id, device_name, coords.latitude.toString(), coords.longitude.toString());
     console.log(credenciais)
     setLoading(true);
     autenticacaoService.login(credenciais).then((response: AxiosResponse) => {
@@ -74,13 +92,13 @@ export default function Login({ navigation }:any) {
   }
 
   return (
-    <Center flex={1}>
+    <Center flex="1">
       <FocusAwareStatusBar barStyle={useColorModeValue('dark-content', 'light-content')} backgroundColor={useColorModeValue('white', 'black')} />
       <FormControl>
-        <Stack mx={5} alignItems="center">
+        <Stack mx="5" alignItems="center">
         <Image
         source={colorMode == 'dark' ? require('../../assets/app/logo.png') : require('../../assets/app/logo-dark.png') }
-        borderRadius={10}
+        borderRadius="10"
       size={'sm'}
 
       alt="Alternate Text"
@@ -88,20 +106,21 @@ export default function Login({ navigation }:any) {
         </Stack>
         </FormControl>
       <FormControl isRequired isInvalid={'login' in errors}>
-        <Stack mx={5} marginTop={2}>
+        <Stack mx="5" marginTop="5">
         <Controller
           control={control}
           render={({field: { onChange, onBlur, value }}) => (
             <Input
               onBlur={onBlur}
               placeholder="Email"
+              InputLeftElement={<Icon as={<MaterialCommunityIcons name="email-outline" />} size={5} ml="2" color="muted.400" />}
               _light={{
                 placeholderTextColor: "blueGray.400",
               }}
               _dark={{
                 placeholderTextColor: "blueGray.50",
               }}
-              variant="underlined"
+              variant="rounded"
               onChangeText={(val) => onChange(val)}
               value={value}
             />
@@ -116,15 +135,16 @@ export default function Login({ navigation }:any) {
         </Stack>
       </FormControl>
       <FormControl isRequired isInvalid={'password' in errors}>
-        <Stack mx={5} marginTop={2}>
+        <Stack mx="5" marginTop="3">
         <Controller
           control={control}
           render={({field: { onChange, onBlur, value }}) => (
             <Input
               type="password"
               onBlur={onBlur}
-              variant="underlined"
+              variant="rounded"
               placeholder="Senha"
+              InputLeftElement={<Icon as={<MaterialCommunityIcons name="lock-outline" />} size="5" ml="2" color="muted.400" />}
                    _light={{
                 placeholderTextColor: "blueGray.400",
               }}
@@ -145,11 +165,12 @@ export default function Login({ navigation }:any) {
         </Stack>
       </FormControl>
       <FormControl isRequired>
-        <Stack mx={5} marginTop={5}>
+        <Stack mx="5" marginTop="5">
           <Button
             bg="primary.900"
+            variant="rounded"
             isLoading={loading} isLoadingText="Entrando"
-            startIcon={<Icon as={MaterialCommunityIcons} name="login" size={5} />}
+            startIcon={<Icon as={MaterialCommunityIcons} name="login" size='md' />}
             onPress={handleSubmit(onSubmit)}
           >Acessar sua conta</Button>
         </Stack>

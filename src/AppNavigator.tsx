@@ -7,6 +7,7 @@ import { useAuth } from "./contexts/Auth";
 import HomeTabs from "./views/home/HomeTabs";
 import { HomeStackParamList } from "./types/navigation/home/home-stack-param-list";
 import { useColorModeValue } from "native-base";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const RootStack = createStackNavigator<HomeStackParamList>();
 
@@ -36,6 +37,7 @@ export function AppNavigator() {
   }
 
   return (
+    <SafeAreaProvider>
     <NavigationContainer theme={MyTheme}>
       {authData ? (
         <RootStackNavigator />
@@ -43,5 +45,6 @@ export function AppNavigator() {
         <AccountStackNavigator />
       )}
     </NavigationContainer>
+    </SafeAreaProvider>
   );
 }

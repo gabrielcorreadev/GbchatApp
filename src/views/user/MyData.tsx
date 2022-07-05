@@ -16,15 +16,15 @@ export const MyData = ({ route, navigation }: Props) => {
   const { authData } = useAuth();
   
   return (
-    <View flex={1}>
+    <View flex="1">
     <FocusAwareStatusBar  />
   <Stack
-  marginTop={5}
+  marginTop="5"
   direction={{
     base: "column",
     md: "row",
   }}
-  space={1}
+  space="1"
   alignItems={{
     base: "center",
     md: "flex-start",
@@ -38,7 +38,7 @@ export const MyData = ({ route, navigation }: Props) => {
   >
     RB
   </Avatar>
-  <VStack space={3} w="90%" marginTop={5}>
+  <VStack space="3" w="90%" marginTop="5">
     <ItemMenu label='Nome' title={authData?.user.name} />
     <ItemMenu label='Email' title={authData?.user.email} />
     <ItemMenu label='Localização' title={'Araraquara'} />

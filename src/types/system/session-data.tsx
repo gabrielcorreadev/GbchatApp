@@ -1,8 +1,6 @@
 import { User } from "./user";
 
-export class SessionData {
-    constructor(
-        public user: User,
-        public access_token: string,
-    ) { }
+export interface SessionData {
+   user: User,
+   access_token: string,
 }

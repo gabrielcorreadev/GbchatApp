@@ -10,7 +10,7 @@ export default function Chat() {
       <FocusAwareStatusBar  />
 <Stack padding={3}>
       <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-        <HStack space={4} padding={2}>
+        <HStack space="4" padding="2">
           <FeaturedStory
             title="Novo"
             bg="blue.600"
@@ -32,7 +32,7 @@ export default function Chat() {
           />
         </HStack>
       </ScrollView>
-      <HStack padding={2}>
+      <HStack padding="2">
         <Conversation />
       </HStack>
     </Stack>

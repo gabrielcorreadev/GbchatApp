@@ -77,7 +77,7 @@ export default function Conversation() {
 
 
   return (
-<Stack flex={1}>
+<Stack flex="1">
   <ListChat />
     </Stack>
   )
@@ -85,7 +85,7 @@ export default function Conversation() {
 
 function NoMessagesFound() {
     return (
-    <Center flex={1}>
+    <Center flex="1">
     <Image
       source={require('../../../assets/icons/letter_message.png')}
       alt="Alternate Text"

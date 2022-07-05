@@ -78,6 +78,7 @@ export default function ConnectedDevices({ route, navigation }: Props) {
         title: response?.data.message,
       });
       onClose();
+      loadData();
     }).catch((error: AxiosError) => {
       toast.show({
         title: error.response?.data.message,
